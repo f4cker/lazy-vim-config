@@ -16,17 +16,6 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- import/override with your plugins
     { import = "plugins" },
-    -- make tokyonight colorscheme transparent
-    {
-      "folke/tokyonight.nvim",
-      opts = {
-          transparent = true,
-          styles = {
-          sidebars = "transparent",
-          floats = "transparent",
-          },
-      },
-    },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
