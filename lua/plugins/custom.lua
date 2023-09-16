@@ -295,7 +295,7 @@ return {
   -- import lint here
   { import = "lazyvim.plugins.extras.linting.eslint" },
   -- import util here
-  { import = "lazyvim.plugins.extras.util.project" },
+  -- { import = "lazyvim.plugins.extras.util.project" },
 
   -- add any tools you want to have installed below
   {
