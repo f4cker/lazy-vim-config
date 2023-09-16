@@ -30,7 +30,7 @@ return {
         },
     },
   },
-
+  
   -- change trouble config
   {
     "folke/trouble.nvim",
@@ -200,6 +200,7 @@ return {
     opts = function()
       return {
         --[[add your custom lualine config here]]
+        theme = 'dracula-nvim'
       }
     end,
   },
