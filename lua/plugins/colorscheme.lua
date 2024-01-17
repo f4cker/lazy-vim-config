@@ -12,11 +12,11 @@ return {
 
 	-- add Dracula
 	{
-		"Mofiqul/dracula.nvim",
+		"f4cker/dracula.nvim",
 		opts = {
 			transparent_bg = true,
 			italic_comment = true,
-			lualine_bg_color = "#ffffff"
+			lualine_bg_color = "#ffffff",
 		},
 	},
 
