@@ -9,4 +9,22 @@ return {
 			},
 		},
 	},
+
+	-- add Dracula
+	{
+		"Mofiqul/dracula.nvim",
+		opts = {
+			transparent_bg = true,
+			italic_comment = true,
+			lualine_bg_color = "#ffffff"
+		},
+	},
+
+	-- Configure LazyVim to load gruvbox
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "dracula",
+    },
+  }
 }
