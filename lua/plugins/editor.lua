@@ -238,4 +238,68 @@ return {
 			delay = 300,
     },
   },
+
+	-- formatting
+	{
+		"stevearc/conform.nvim",
+		dependencies = { "mason.nvim" },
+		lazy = true,
+		cmd = "ConformInfo",
+		keys = {
+			{
+				"<leader>cF",
+				function()
+					require("conform").format({ formatters = { "injected" } })
+				end,
+				mode = { "n", "v" },
+				desc = "Format Injected Langs",
+			},
+		},
+		init = function()
+			-- Install the conform formatter on VeryLazy
+			require("lazyvim.util").on_very_lazy(function()
+				require("lazyvim.util").format.register({
+					name = "conform.nvim",
+					priority = 100,
+					primary = true,
+					format = function(buf)
+						local plugin = require("lazy.core.config").plugins["conform.nvim"]
+						local Plugin = require("lazy.core.plugin")
+						local opts = Plugin.values(plugin, "opts", false)
+						require("conform").format(Util.merge(opts.format, { bufnr = buf }))
+					end,
+					sources = function(buf)
+						local ret = require("conform").list_formatters(buf)
+						---@param v conform.FormatterInfo
+						return vim.tbl_map(function(v)
+							return v.name
+						end, ret)
+					end,
+				})
+			end)
+		end,
+		opts = function()
+			---@class ConformOpts
+			local opts = {
+				-- LazyVim will use these options when formatting with the conform.nvim formatter
+				format = {
+					timeout_ms = 3000,
+					async = false, -- not recommended to change
+					quiet = false, -- not recommended to change
+				},
+				---@type table<string, conform.FormatterUnit[]>
+				formatters_by_ft = {
+					lua = { "stylua" },
+					fish = { "fish_indent" },
+					sh = { "shfmt" },
+					-- Conform will run multiple formatters sequentially
+					go = { "goimports", "gofmt" },
+					-- Use a sub-list to run only the first available formatter
+    			javascript = { { "prettierd", "prettier" } },
+    			typescript = { { "prettierd", "prettier" } },
+				},
+			}
+			return opts
+		end,
+	}
 }
